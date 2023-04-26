@@ -1,0 +1,8 @@
+C:\Users\ALUNO\source\repos\Tarefa3\JoaoMaridoDeAluguel\bin\Debug\JoaoMaridoDeAluguel.exe.config
+C:\Users\ALUNO\source\repos\Tarefa3\JoaoMaridoDeAluguel\bin\Debug\JoaoMaridoDeAluguel.exe
+C:\Users\ALUNO\source\repos\Tarefa3\JoaoMaridoDeAluguel\bin\Debug\JoaoMaridoDeAluguel.pdb
+C:\Users\ALUNO\source\repos\Tarefa3\JoaoMaridoDeAluguel\obj\Debug\JoaoMaridoDeAluguel.csproj.AssemblyReference.cache
+C:\Users\ALUNO\source\repos\Tarefa3\JoaoMaridoDeAluguel\obj\Debug\JoaoMaridoDeAluguel.csproj.SuggestedBindingRedirects.cache
+C:\Users\ALUNO\source\repos\Tarefa3\JoaoMaridoDeAluguel\obj\Debug\JoaoMaridoDeAluguel.csproj.CoreCompileInputs.cache
+C:\Users\ALUNO\source\repos\Tarefa3\JoaoMaridoDeAluguel\obj\Debug\JoaoMaridoDeAluguel.exe
+C:\Users\ALUNO\source\repos\Tarefa3\JoaoMaridoDeAluguel\obj\Debug\JoaoMaridoDeAluguel.pdb
