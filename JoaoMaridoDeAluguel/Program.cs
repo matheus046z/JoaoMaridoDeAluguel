@@ -59,7 +59,7 @@ namespace JoaoMaridoDeAluguel
                         {
                             if (line.Contains(campo))
                             {
-                                Console.WriteLine("Found item \"{0}\" in line: {1}", campo, line);
+                                Console.WriteLine("Item encontrado \"{0}\" ", campo);
                             }
                         }
                     }
