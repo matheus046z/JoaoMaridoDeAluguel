@@ -44,33 +44,51 @@ namespace JoaoMaridoDeAluguel
             "Cidade:", "Estado:", "Equipamento:", "Marca:", "Ano:"
         };
 
-            try
-            {
-                // Open the text file using a stream reader
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    string line;
+            string Dados = File.ReadAllText(path);
+            int i= 0;
+            string infoCampos = null;
 
-                    // Read the file line by line
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        // Loop through each item in the list and look for it in the current line
-                        foreach (string campo in campos)
-                        {
-                            if (line.Contains(campo))
-                            {
-                                Console.WriteLine("Item encontrado \"{0}\" ", campo);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
+            while (i <= Dados.Length )
             {
-                Console.WriteLine("Error reading file: " + e.Message);
+                infoCampos = Dados.Replace(Dados, campos[i]);
+                i++;
             }
+            
+            
 
-            Console.ReadKey();
+           
+        File.WriteAllText("infoCampos.txt", infoCampos);
+            
+            
+            
+            
+            //try
+            //{
+            //    // Open the text file using a stream reader
+            //    using (StreamReader sr = new StreamReader(path))
+            //    {
+            //        string line;
+
+            //        // Read the file line by line
+            //        while ((line = sr.ReadLine()) != null)
+            //        {
+            //            // Loop through each item in the list and look for it in the current line
+            //            foreach (string campo in campos)
+            //            {
+            //                if (line.Contains(campo))
+            //                {
+            //                    Console.WriteLine("Item encontrado \"{0}\" ", campo);
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("Error reading file: " + e.Message);
+            //}
+
+            //Console.ReadKey();
 
 
 
