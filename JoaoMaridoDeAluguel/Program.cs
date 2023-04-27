@@ -71,11 +71,18 @@ namespace JoaoMaridoDeAluguel
             for (int i = 0; i < valores.Count; i++)
             {
                 valores[i] = valores[i].Trim();
-                // Descobrir onde estã os index de cada item printando no terminal
+                // Descobrir onde estão os index de cada item printando no terminal
                 Console.WriteLine(valores[i]);
                 Console.WriteLine("index nr: " + i);
             }
 
+            Console.ReadKey();
+            Console.Clear();
+
+            var pairs = campos.Zip(infoCampo, (k, v) => new { k, v })
+                              .ToDictionary(x => x.k, x => x.v);
+            
+            Console.Write(pairs);
             Console.ReadKey();
 
             //foreach (string valor in valores)
