@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Runtime.InteropServices.ComTypes;
+using System.Text.RegularExpressions;
 // 1 linha e a ordem de serviço
 
 namespace JoaoMaridoDeAluguel
@@ -44,53 +45,44 @@ namespace JoaoMaridoDeAluguel
             "Cidade:", "Estado:", "Equipamento:", "Marca:", "Ano:"
         };
 
-            string Dados = File.ReadAllText(path);
-            int i= 0;
-            string infoCampos = null;
+            List<string> valores;
 
-            while (i <= Dados.Length )
+            // Le o txt com codiicação utf 8 e armazena na variavel Dados
+
+            string Dados = File.ReadAllText(path, Encoding.UTF8);
+            string infoCampo = Dados;
+
+            // Procura os itens da lista campos no texto e substitui por ","
+            foreach (string campo in campos)
             {
-                infoCampos = Dados.Replace(Dados, campos[i]);
-                i++;
+                infoCampo = infoCampo.Replace(campo, ",");
+                infoCampo = Regex.Replace(infoCampo, campo, ",");
+  
             }
-            
-            
 
-           
-        File.WriteAllText("infoCampos.txt", infoCampos);
-            
-            
-            
-            
-            //try
-            //{
-            //    // Open the text file using a stream reader
-            //    using (StreamReader sr = new StreamReader(path))
-            //    {
-            //        string line;
-
-            //        // Read the file line by line
-            //        while ((line = sr.ReadLine()) != null)
-            //        {
-            //            // Loop through each item in the list and look for it in the current line
-            //            foreach (string campo in campos)
-            //            {
-            //                if (line.Contains(campo))
-            //                {
-            //                    Console.WriteLine("Item encontrado \"{0}\" ", campo);
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine("Error reading file: " + e.Message);
-            //}
-
+            //File.WriteAllText("infoCampos.txt", infoCampo);
+            //Console.WriteLine(infoCampo);
             //Console.ReadKey();
+            //Console.Clear();
 
+            // Cria uma lista somente com os valores separados por ","
+            valores = new List<string>(infoCampo.Split(','));
 
+            for (int i = 0; i < valores.Count; i++)
+            {
+                valores[i] = valores[i].Trim();
+                // Descobrir onde estã os index de cada item printando no terminal
+                Console.WriteLine(valores[i]);
+                Console.WriteLine("index nr: " + i);
+            }
+
+            Console.ReadKey();
+
+            //foreach (string valor in valores)
+            //{
+            //    Console.WriteLine(valor);
+            //}
+            //Console.ReadKey();
 
         }
     }
@@ -98,79 +90,7 @@ namespace JoaoMaridoDeAluguel
 
 
 // passos
-// Procurar ":", gravar : e os caracteres anteriores ate chegar em um "espaço", gravar campos em um array
-// procurar informações entre um array e outro, criar um dicionario com o campo do array e com a informação correspondente
+// Criar lista com os campos
+// Substituir os campos por "," e criar um arquivo só com os valores dos campos separados por ","
+// Criar um dicionario relacionando os campos com seus respectivos valores
 
-
-// CHAT GPT  -> CRIOU LISTA DE PALAVRAS ENTRE ":" E " "
-//string[] Campos = { "Solicitação:", "Produto:", "Aceito em:", "Serviço:", "Prazo:", "Local:", "Complemento:", "Bairro:", "Região:", "Cidade:", "Estado:", "CEP:", "Referências:", "Problema:", "Importante:", "Segurado:", "Solicitante:", "Telefone:", "Destino:", "Local:", "Complemento:", "Referência:", "Bairro:", "Região:", "Cidade:", "Estado:", "Equipamento:", "Marca:", "Ano:"};
-
-//string path = "C:\\Users\\ALUNO\\source\\repos\\Tarefa3\\JoaoMaridoDeAluguel\\dados.txt";
-
-//try
-//{
-//    // Open the text file using a stream reader
-//    using (StreamReader sr = new StreamReader(path))
-//    {
-//        string line;
-
-//        // Read the file line by line
-//        while ((line = sr.ReadLine()) != null)
-//        {
-//            // Find the ":" character in the line
-//            int colonIndex = line.IndexOf(":");
-
-//            while (colonIndex >= 0)
-//            {
-//                // Go backwards until a space is found
-//                int spaceIndex = colonIndex - 1;
-//                while (spaceIndex >= 0 && line[spaceIndex] != ' ')
-//                {
-//                    spaceIndex--;
-//                }
-
-//                // Get the word between the space and the ":" and print it to the console
-//                string word = line.Substring(spaceIndex + 1, colonIndex - spaceIndex - 1);
-//                Console.WriteLine(word);
-
-//                // Find the next ":" character in the line
-//                colonIndex = line.IndexOf(":", colonIndex + 1);
-//            }
-//        }
-//    }
-//}
-//catch (Exception e)
-//{
-//    Console.WriteLine("Error reading file: " + e.Message);
-//}
-
-//Console.ReadKey();
-
-
-
-//string path = "C:\\Users\\ALUNO\\source\\repos\\Tarefa3\\JoaoMaridoDeAluguel\\dados.txt";
-
-//try
-//{
-//    // Open the text file using a stream reader
-//    using (StreamReader sr = new StreamReader(path))
-//    {
-//        string line;
-
-//        // Read the file line by line
-//        while ((line = sr.ReadLine()) != null)
-//        {
-//            // Check if the line contains ":"
-//            if (line.Contains(":"))
-//            {
-//                Console.WriteLine("Found ':' in line: " + line);
-//            }
-//        }
-//    }
-//}
-//catch (Exception e)
-//{
-//    Console.WriteLine("Error reading file: " + e.Message);
-//}
-
-//Console.ReadKey();
