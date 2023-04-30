@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Runtime.InteropServices.ComTypes;
+using System.Text.RegularExpressions;
+using System.Linq.Expressions;
 // 1 linha e a ordem de serviço
 
 namespace JoaoMaridoDeAluguel
@@ -14,163 +16,90 @@ namespace JoaoMaridoDeAluguel
         static void Main(string[] args)
         {
 
-        //    List<string> Campos = new List<string>()
-        //{
-        //    "Solicitação:", "Produto:", "Aceito em:", "Serviço:", "Prazo:", "Local:", "Complemento:", "Bairro:",
-        //    "Região:", "Cidade:", "Estado:", "CEP:", "Referências:", "Problema:", "Importante:", "Segurado:",
-        //    "Solicitante:", "Telefone:", "Destino:", "Local:", "Complemento:", "Referência:", "Bairro:", "Região:",
-        //    "Cidade:", "Estado:", "Equipamento:", "Marca:", "Ano:"
-        //};
+            // Caminho do txt
+            string path = "E:\\CURSOS\\SENAI\\Desafio-txt\\JoaoMaridoDeAluguel\\JoaoMaridoDeAluguel\\bin\\Debug\\dados.txt";
 
-            //int i = 0;
-
-            //while (i < Campos.Count)
-            //{
-            //    Console.WriteLine(Campos[i]);
-            //    i++;
-            //}
-            //Console.ReadKey();
-
-            // Replace "file.txt" with the path to your text file
-            
-            string path = "C:\\Users\\ALUNO\\source\\repos\\Tarefa3\\JoaoMaridoDeAluguel\\dados.txt";
-
-            // Define the list of items to look for in the text file
+            // Lista de campos presentes no arquivo
             List<string> campos = new List<string>()
         {
             "Solicitação:", "Produto:", "Aceito em:", "Serviço:", "Prazo:", "Local:", "Complemento:", "Bairro:",
             "Região:", "Cidade:", "Estado:", "CEP:", "Referências:", "Problema:", "Importante:", "Segurado:",
-            "Solicitante:", "Telefone:", "Destino:", "Local:", "Complemento:", "Referência:", "Bairro:", "Região:",
-            "Cidade:", "Estado:", "Equipamento:", "Marca:", "Ano:"
-        };
+            "Solicitante:", "Telefone:", "Destino:", "Referência:", "Equipamento:", "Marca:", "Ano:"
+        }; //itens repetidos: Local, complemento, bairro, região, cidade, estado, referencia/referencias,
 
-            string Dados = File.ReadAllText(path);
-            int i= 0;
-            string infoCampos = null;
+            List<string> valores;
 
-            while (i <= Dados.Length )
+            // Le o txt com codiicação utf 8 e armazena na variavel Dados
+            string Dados = File.ReadAllText(path, Encoding.UTF8);
+            string infoCampo = Dados;
+
+            // Procura os itens da lista campos no texto e substitui por ";"
+            foreach (string campo in campos)
             {
-                infoCampos = Dados.Replace(Dados, campos[i]);
-                i++;
+                infoCampo = infoCampo.Replace(campo, ";");
+                infoCampo = Regex.Replace(infoCampo, campo, ";");
+  
             }
-            
-            
 
-           
-        File.WriteAllText("infoCampos.txt", infoCampos);
-            
-            
-            
-            
-            //try
+            // Cria uma lista somente com os valores separados por ";"
+            valores = new List<string>(infoCampo.Split(';'));
+
+            // Descobre onde estão o index de cada item printando no terminal
+            //for (int i = 0; i < valores.Count; i++)
             //{
-            //    // Open the text file using a stream reader
-            //    using (StreamReader sr = new StreamReader(path))
+            //    try
             //    {
-            //        string line;
-
-            //        // Read the file line by line
-            //        while ((line = sr.ReadLine()) != null)
-            //        {
-            //            // Loop through each item in the list and look for it in the current line
-            //            foreach (string campo in campos)
-            //            {
-            //                if (line.Contains(campo))
-            //                {
-            //                    Console.WriteLine("Item encontrado \"{0}\" ", campo);
-            //                }
-            //            }
-            //        }
+            //        valores[i] = valores[i].Trim();
+            //        
+            //        Console.WriteLine("index de valores: " + i);
+            //        Console.WriteLine("Campo: " + campos[i] + " -  " + valores[i+1]);
+            //    }
+            //    catch (System.ArgumentOutOfRangeException)
+            //    {
+            //        break;
             //    }
             //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine("Error reading file: " + e.Message);
-            //}
 
-            //Console.ReadKey();
+            IDictionary<string, string> DadosDic = new Dictionary<string, string>();
+            DadosDic.Add("OS:", valores[0].Trim());
 
+            IDictionary<string, string> DadosDicRepetidos = new Dictionary<string, string>();
 
+            int c = 0;
 
+            while (c <= campos.Count)
+            {
+                try
+                {
+                    DadosDic.Add(campos[c].Trim(), valores[c + 1].Trim());
+                }
+                catch (System.ArgumentException) // O txt tem campos repetidos,  esta tentando sobrescrever item existente no dicionario e dando ArgumentException
+                {
+                    //Console.WriteLine("System.ArgumentException");
+                    try
+                    {
+                        DadosDicRepetidos.Add(campos[c].Trim(), valores[c + 1].Trim());
+                    }
+                    catch (System.ArgumentOutOfRangeException)
+                    {
+                        //Console.WriteLine("ArgumentOutOfRangeException");
+                        break; // encerra o loop quando acaba os valores para adicioanr ao dicionario
+                    }
+                }
+                c = c + 1;
+            }
+
+            DadosDic.Select(i => $"{i.Key} {i.Value}").ToList().ForEach(Console.WriteLine);
+            //Console.WriteLine("\nDADOS REPETIDOS: \n");
+            //DadosDicRepetidos.Select(i => $"{i.Key} {i.Value}").ToList().ForEach(Console.WriteLine);
+            Console.ReadKey();
         }
     }
 }
 
 
 // passos
-// Procurar ":", gravar : e os caracteres anteriores ate chegar em um "espaço", gravar campos em um array
-// procurar informações entre um array e outro, criar um dicionario com o campo do array e com a informação correspondente
+// Criar lista com os campos
+// Substituir os campos por ";" e criar um arquivo só com os valores dos campos separados por ";"
+// Criar um dicionario relacionando os campos com seus respectivos valores
 
-
-// CHAT GPT  -> CRIOU LISTA DE PALAVRAS ENTRE ":" E " "
-//string[] Campos = { "Solicitação:", "Produto:", "Aceito em:", "Serviço:", "Prazo:", "Local:", "Complemento:", "Bairro:", "Região:", "Cidade:", "Estado:", "CEP:", "Referências:", "Problema:", "Importante:", "Segurado:", "Solicitante:", "Telefone:", "Destino:", "Local:", "Complemento:", "Referência:", "Bairro:", "Região:", "Cidade:", "Estado:", "Equipamento:", "Marca:", "Ano:"};
-
-//string path = "C:\\Users\\ALUNO\\source\\repos\\Tarefa3\\JoaoMaridoDeAluguel\\dados.txt";
-
-//try
-//{
-//    // Open the text file using a stream reader
-//    using (StreamReader sr = new StreamReader(path))
-//    {
-//        string line;
-
-//        // Read the file line by line
-//        while ((line = sr.ReadLine()) != null)
-//        {
-//            // Find the ":" character in the line
-//            int colonIndex = line.IndexOf(":");
-
-//            while (colonIndex >= 0)
-//            {
-//                // Go backwards until a space is found
-//                int spaceIndex = colonIndex - 1;
-//                while (spaceIndex >= 0 && line[spaceIndex] != ' ')
-//                {
-//                    spaceIndex--;
-//                }
-
-//                // Get the word between the space and the ":" and print it to the console
-//                string word = line.Substring(spaceIndex + 1, colonIndex - spaceIndex - 1);
-//                Console.WriteLine(word);
-
-//                // Find the next ":" character in the line
-//                colonIndex = line.IndexOf(":", colonIndex + 1);
-//            }
-//        }
-//    }
-//}
-//catch (Exception e)
-//{
-//    Console.WriteLine("Error reading file: " + e.Message);
-//}
-
-//Console.ReadKey();
-
-
-
-//string path = "C:\\Users\\ALUNO\\source\\repos\\Tarefa3\\JoaoMaridoDeAluguel\\dados.txt";
-
-//try
-//{
-//    // Open the text file using a stream reader
-//    using (StreamReader sr = new StreamReader(path))
-//    {
-//        string line;
-
-//        // Read the file line by line
-//        while ((line = sr.ReadLine()) != null)
-//        {
-//            // Check if the line contains ":"
-//            if (line.Contains(":"))
-//            {
-//                Console.WriteLine("Found ':' in line: " + line);
-//            }
-//        }
-//    }
-//}
-//catch (Exception e)
-//{
-//    Console.WriteLine("Error reading file: " + e.Message);
-//}
-
-//Console.ReadKey();
