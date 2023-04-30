@@ -25,7 +25,7 @@ namespace JoaoMaridoDeAluguel
             "Solicitação:", "Produto:", "Aceito em:", "Serviço:", "Prazo:", "Local:", "Complemento:", "Bairro:",
             "Região:", "Cidade:", "Estado:", "CEP:", "Referências:", "Problema:", "Importante:", "Segurado:",
             "Solicitante:", "Telefone:", "Destino:", "Referência:", "Equipamento:", "Marca:", "Ano:"
-        }; // Local, complemento, bairro, reagiao, cidade, estado, referencia/referencias,
+        }; //itens repetidos: Local, complemento, bairro, região, cidade, estado, referencia/referencias,
 
             List<string> valores;
 
