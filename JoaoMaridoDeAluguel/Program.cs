@@ -23,7 +23,7 @@ namespace JoaoMaridoDeAluguel
             List<string> campos = new List<string>()
         {
             "Solicitação:", "Produto:", "Aceito em:", "Serviço:", "Prazo:", "Local:", "Complemento:", "Bairro:",
-            "Região:", "Cidade:", "Estado:", "CEP:", "Referências:", "Problema:", "Importante:", "Segurado:",
+            "Região:", "Cidade:", "Estado:", "CEP:", "Referências:", "Problema:", "Importante:","FONE:", "Segurado:",
             "Solicitante:", "Telefone:", "Destino:", "Referência:", "Equipamento:", "Marca:", "Ano:"
         }; //itens repetidos: Local, complemento, bairro, região, cidade, estado, referencia/referencias,
 
