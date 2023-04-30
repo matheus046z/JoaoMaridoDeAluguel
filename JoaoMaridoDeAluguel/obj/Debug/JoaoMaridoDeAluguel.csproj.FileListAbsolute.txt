@@ -6,3 +6,11 @@ C:\Users\ALUNO\source\repos\Tarefa3\JoaoMaridoDeAluguel\obj\Debug\JoaoMaridoDeAl
 C:\Users\ALUNO\source\repos\Tarefa3\JoaoMaridoDeAluguel\obj\Debug\JoaoMaridoDeAluguel.csproj.CoreCompileInputs.cache
 C:\Users\ALUNO\source\repos\Tarefa3\JoaoMaridoDeAluguel\obj\Debug\JoaoMaridoDeAluguel.exe
 C:\Users\ALUNO\source\repos\Tarefa3\JoaoMaridoDeAluguel\obj\Debug\JoaoMaridoDeAluguel.pdb
+E:\CURSOS\SENAI\Desafio-txt\JoaoMaridoDeAluguel\JoaoMaridoDeAluguel\obj\Debug\JoaoMaridoDeAluguel.csproj.AssemblyReference.cache
+E:\CURSOS\SENAI\Desafio-txt\JoaoMaridoDeAluguel\JoaoMaridoDeAluguel\obj\Debug\JoaoMaridoDeAluguel.csproj.SuggestedBindingRedirects.cache
+E:\CURSOS\SENAI\Desafio-txt\JoaoMaridoDeAluguel\JoaoMaridoDeAluguel\obj\Debug\JoaoMaridoDeAluguel.csproj.CoreCompileInputs.cache
+E:\CURSOS\SENAI\Desafio-txt\JoaoMaridoDeAluguel\JoaoMaridoDeAluguel\obj\Debug\JoaoMaridoDeAluguel.exe
+E:\CURSOS\SENAI\Desafio-txt\JoaoMaridoDeAluguel\JoaoMaridoDeAluguel\obj\Debug\JoaoMaridoDeAluguel.pdb
+E:\CURSOS\SENAI\Desafio-txt\JoaoMaridoDeAluguel\JoaoMaridoDeAluguel\bin\Debug\JoaoMaridoDeAluguel.exe.config
+E:\CURSOS\SENAI\Desafio-txt\JoaoMaridoDeAluguel\JoaoMaridoDeAluguel\bin\Debug\JoaoMaridoDeAluguel.exe
+E:\CURSOS\SENAI\Desafio-txt\JoaoMaridoDeAluguel\JoaoMaridoDeAluguel\bin\Debug\JoaoMaridoDeAluguel.pdb
